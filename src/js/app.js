@@ -5,61 +5,66 @@ async function loadJSON(){
         const result = await response.json();
 
         var lista = document.getElementById('lista_peliculas');
-        
-
 
         for (const movie of result){
-            var li = document.createElement("p");
-            var img = document.createElement("img");
-
-            li.textContent = movie.title;
-            lista.appendChild(li);
-
-            img.src = movie.image;
-            lista.appendChild(img);
+            // Crear elementos
+            var li = document.createElement("li");
             
-            // console.log(movie.title);
-        }
 
-        // for (const movie of result){
-        //     // {console.log(movie.title);}
-        //     console.log(`
-        //         Titulo: ${movie.title}, 
-        //         Genero: ${movie.genre}
-        //     `);            
-        // }
+            var rank = document.createElement("p");
+            var title = document.createElement("p");
+            var description = document.createElement("p");
+            var image = document.createElement("img");
+            
+            var genre = document.createElement("p");
+            var raiting = document.createElement("p");
+            var id = document.createElement("p");
+            var year = document.createElement("p");
+            var imdbid = document.createElement("p");
+            var imdbid_link = document.createElement("a");
+            
+            var div = document.createElement("div");
+
+            // Clases
+            // li.classList.add("bg-red-800","rounded-3xl");
+
+            //TextContent
+            rank.textContent = movie.rank;
+            title.textContent = movie.title;
+            description.textContent = movie.description;
+            image.src = movie.image;
+            image.alt = movie.title;
+            
+            genre.textContent = movie.genre;
+            raiting.textContent = movie.rating;
+            id.textContent = movie.id;
+            year.textContent = movie.year;
+            imdbid.textContent = movie.imdbid;
+            imdbid_link.href = movie.imdb_link;
+            imdbid_link.textContent = movie.imdb_link;
+
+            // Appendchild
+            lista.appendChild(li);
+            li.appendChild(rank);
+            li.appendChild(title);
+            // li.appendChild(description);
+            li.appendChild(image);
+            
+            li.appendChild(genre);
+            li.appendChild(raiting);
+            li.appendChild(id);
+            li.appendChild(year);
+            li.appendChild(imdbid);
+            li.appendChild(imdbid_link);
+            
+            // lista.appendChild(rank);
+
+            // li.textContent = movie.title;
+            // lista.appendChild(li);
+        }
         
     } catch (error) {
         console.error(error);
     }
 }
 loadJSON();
-// async function loadJSON(){
-
-//     try{
-//         const response = await fetch('./Json/usuarios.json');
-//         const data = await response.json();
-        
-//         for (const user of data.users){
-//             console.log(`
-//                 Username: ${user.username}, Password: ${user.password}
-//             `);
-            
-//         }
-//         // console.log(data);        
-//     }catch (error){
-//         console.error('Error al cargar el archivo JSON:', error);        
-//     }
-// }
-
-// loadJSON();
-
-
-// fetch('./Json/usuarios.json')
-//     .then(response => response.json())
-//     .then(data =>{
-//         console.log(data);                
-//     })
-//     .catch(error =>{
-//         console.error('Error al carga el archivo JSON:', error);        
-//     });
